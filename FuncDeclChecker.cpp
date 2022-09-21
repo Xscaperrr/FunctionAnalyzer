@@ -14,12 +14,23 @@ namespace
   class FuncDeclChecker : public Checker<check::ASTDecl<FunctionDecl>> 
   {
     mutable std::unique_ptr<BugType> BT;
-
+    mutable ofstream outfile;
   public:
+    FuncDeclChecker();
+    ~FuncDeclChecker();
     void checkASTDecl(const FunctionDecl *D,AnalysisManager &Mgr,BugReporter &BR) const;
-};
+  };
 } // end anonymous namespace
-
+FuncDeclChecker::FuncDeclChecker()
+{
+  outfile.open("FuncInfo.out");
+  outfile<<"----begin-----"<<endl;
+}
+FuncDeclChecker::~FuncDeclChecker()
+{
+  outfile<<"----end-----"<<endl;
+  outfile.close();
+}
 void FuncDeclChecker::checkASTDecl(const FunctionDecl *D,AnalysisManager &Mgr,BugReporter &BR) const
 {
   auto name=D->getNameInfo().getAsString();
@@ -30,10 +41,7 @@ void FuncDeclChecker::checkASTDecl(const FunctionDecl *D,AnalysisManager &Mgr,Bu
     for(int i=1;i<D->getNumParams();i++)
       args += " , " + (D->parameters()[i]->getQualifiedNameAsString());
   string out=retType + ' ' +name + '(' +args + ')';
-  ofstream outfile;
-  outfile.open("FuncInfo.out",ios::app);
   outfile<<out<<endl;
-  outfile.close();
 }
 
 extern "C" void clang_registerCheckers(CheckerRegistry &registry) {
