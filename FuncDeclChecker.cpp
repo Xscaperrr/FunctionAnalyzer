@@ -24,12 +24,15 @@ void FuncDeclChecker::checkASTDecl(const FunctionDecl *D,AnalysisManager &Mgr,Bu
 {
   auto name=D->getNameInfo().getAsString();
   auto retType = D->getReturnType().getAsString();
-  std::string arg0;
+  string args="";
   if(D->getNumParams() > 0)
-    arg0 = D->parameters()[0]->getQualifiedNameAsString();
+    args= D->parameters()[0]->getQualifiedNameAsString();
+    for(int i=1;i<D->getNumParams();i++)
+      args += " , " + (D->parameters()[i]->getQualifiedNameAsString());
+  string out=retType + ' ' +name + '(' +args + ')';
   ofstream outfile;
-  outfile.open("afile.dat",ios::app);
-  outfile<<retType<<' '<<name<<endl;
+  outfile.open("FuncInfo.out",ios::app);
+  outfile<<out<<endl;
   outfile.close();
 }
 
