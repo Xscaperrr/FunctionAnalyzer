@@ -23,8 +23,8 @@ namespace
 } // end anonymous namespace
 FuncDeclChecker::FuncDeclChecker()
 {
-  outfile.open("FuncInfo.out");
-  outfile<<"----begin-----"<<endl;
+  outfile.open("/tmp/FuncInfo.out");
+  outfile<<"----begin----"<<endl;
 }
 FuncDeclChecker::~FuncDeclChecker()
 {
