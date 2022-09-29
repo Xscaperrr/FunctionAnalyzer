@@ -2,7 +2,10 @@
 一个基于Clang Static Analyzer的clang插件。能够将目标文件中所有声明的函数信息输出到文件。
 ## 编译  
 若不想编译,可尝试直接使用Release中的.so文件。  
-在clang/lib/Analysis/plugins文件夹下clone该项目,并在该目录下的CMakeList.txt中添加add_subdirectory(FunctionAnalyzer)  
+在clang/lib/Analysis/plugins文件夹下clone该项目,并在该目录下的CMakeList.txt中添加
+```cmake  
+add_subdirectory(FunctionAnalyzer)
+```  
 重新编译整个clang后则会在build/lib生成.so文件。  
 ## 使用  
 ### 对单个文件使用
