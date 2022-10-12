@@ -1,6 +1,4 @@
-#include "clang/StaticAnalyzer/Core/BugReporter/BugType.h"
 #include "clang/StaticAnalyzer/Core/Checker.h"
-#include "clang/StaticAnalyzer/Core/PathSensitive/CheckerContext.h"
 #include "clang/StaticAnalyzer/Frontend/CheckerRegistry.h"
 #include <fstream>
 #include <iostream>
@@ -13,7 +11,6 @@ namespace
 {
   class FuncDeclChecker : public Checker<check::ASTDecl<FunctionDecl>> 
   {
-    mutable std::unique_ptr<BugType> BT;
     mutable ofstream outfile;
   public:
     FuncDeclChecker();
