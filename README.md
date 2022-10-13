@@ -1,7 +1,7 @@
 # FunctionAnalyzer  
 一个基于Clang Static Analyzer的clang插件。能够将目标文件中所有声明的函数信息输出到文件。
 ## 编译  
-若不想编译,可尝试直接使用Release中的.so文件。  
+若不想编译,可尝试直接下载Release中的.so文件到build/lib/目录。  
 在clang/lib/Analysis/plugins文件夹下clone该项目,并在该目录下的CMakeList.txt中添加
 ```cmake  
 add_subdirectory(FunctionAnalyzer)
