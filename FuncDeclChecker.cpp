@@ -34,9 +34,9 @@ void FuncDeclChecker::checkASTDecl(const FunctionDecl *D,AnalysisManager &Mgr,Bu
   auto retType = D->getReturnType().getAsString();
   string args="";
   if(D->getNumParams() > 0)
-    args= D->parameters()[0]->getQualifiedNameAsString();
+    args=D->parameters()[0]->getType().getAsString()+' '+D->parameters()[0]->getQualifiedNameAsString();
     for(int i=1;i<D->getNumParams();i++)
-      args += " , " + (D->parameters()[i]->getQualifiedNameAsString());
+      args += " , " + D->parameters()[0]->getType().getAsString()+' '+(D->parameters()[i]->getQualifiedNameAsString());
   string out=retType + ' ' +name + '(' +args + ')';
   outfile<<out<<endl;
 }
